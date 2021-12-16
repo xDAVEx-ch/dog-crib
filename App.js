@@ -1,21 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import Login from './screens/login/login.screen';
+
+import { ThemeProvider } from 'styled-components/native';
+import { defaultTheme as theme } from './theme/default/index';
+import {
+  useFonts as useRoboto,
+  Roboto_300Light,
+  Roboto_500Medium,
+} from '@expo-google-fonts/roboto';
 
 export default function App() {
+  const [bodyRobotoLoaded] = useRoboto({
+    Roboto_300Light,
+  });
+
+  const [headingRobotoLoaded] = useRoboto({
+    Roboto_500Medium,
+  });
+
+  if (!bodyRobotoLoaded || !headingRobotoLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <ThemeProvider theme={theme}>
+        <Login />
+      </ThemeProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
