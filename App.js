@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Login from './screens/login/login.screen';
+import Signup from './screens/signup/signup.screen';
 
 import { ThemeProvider } from 'styled-components/native';
 import { defaultTheme as theme } from './theme/default/index';
@@ -26,7 +27,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Login />
+        <Signup />
       </ThemeProvider>
     </>
   );

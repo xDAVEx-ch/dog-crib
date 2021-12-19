@@ -20,10 +20,16 @@ const StyledInputLabel = styled(Text)`
   color: ${(props) => props.theme.colors.text.primary};
 `;
 
-const FormInput = ({ labelText, ...otherProps }) => (
+const FormInput = ({ labelText, isDate, showDatePicker, ...otherProps }) => (
   <View>
     <StyledInputLabel>{labelText}</StyledInputLabel>
-    <StyledTextInput {...otherProps} />
+    {!isDate ? (
+      <StyledTextInput {...otherProps} />
+    ) : (
+      <TouchableOpacity onPress={showDatePicker}>
+        <StyledTextInput {...otherProps} />
+      </TouchableOpacity>
+    )}
   </View>
 );
 
