@@ -21,7 +21,8 @@
     "react-native": "0.64.3",
     "react-native-web": "0.17.1",
     "styled-components": "^5.3.3",
-    "supports-color": "^9.2.1"
+    "supports-color": "^9.2.1",
+    "@react-native-community/datetimepicker": "3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

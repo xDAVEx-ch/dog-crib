@@ -20,14 +20,15 @@ const TextLink = styled(TouchableOpacity)`
 
 const TextLinkContent = styled(Text)`
   width: 100%;
-  color: black;
+  color: ${(props) => props.theme.colors.ui.primary};
+  font-weight: ${(props) => props.theme.fontWeights.regular};
 `;
 
-const ExtraView = () => (
+const ExtraView = ({ textMsg, textContent }) => (
   <StyledExtraView>
-    <StyledExtraText>Don't have an account?</StyledExtraText>
+    <StyledExtraText>{textMsg}</StyledExtraText>
     <TextLink>
-      <TextLinkContent>Sign Up</TextLinkContent>
+      <TextLinkContent>{textContent}</TextLinkContent>
     </TextLink>
   </StyledExtraView>
 );
