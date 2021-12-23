@@ -10,9 +10,15 @@ import FormInput from '../../components/formInput/formInput.component';
 import CustomizeButton from '../../components/customizeButton/customizeButton.component';
 import MsgBox from '../../components/msgBox/msgBox.component';
 import StyledLine from '../../components/Line/Line.component';
-import ExtraView from '../../components/extraView/extraView.component';
+import KeyboardAvoid from '../../components/keyboardAvoidWrapper/keyboardAvoidWrapper';
 
 import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
+
+const dimensions = {
+  screenWidth: Dimensions.get('window').width,
+  screenHeight: Dimensions.get('window').height,
+};
 
 const statusBarHeight = Constants.statusBarHeight;
 
@@ -65,62 +71,62 @@ const GoogleIcon = styled(Ionicons)`
 
 const Login = () => {
   return (
-    <StyledContainer>
-      <StatusBar style='dark' />
-      <InnerContainer>
-        <PageLogo
-          resizeMode='cover'
-          source={require('./../../assets/playing-with-dogs.png')}
-        />
-        <PageTitle>Dog Crib</PageTitle>
-        <SubTitle>Account Login</SubTitle>
+    <KeyboardAvoid>
+      <StyledContainer style={{ height: dimensions.screenHeight }}>
+        <StatusBar style='dark' />
+        <InnerContainer>
+          <PageLogo
+            resizeMode='cover'
+            source={require('./../../assets/playing-with-dogs.png')}
+          />
+          <PageTitle>Dog Crib</PageTitle>
+          <SubTitle>Account Login</SubTitle>
 
-        <Formik
-          initialValues={{ email: '', password: '' }}
-          onSubmit={() => console.log('Information was sent')}
-        >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <StyledFormArea showsVerticalScrollIndicator={false}>
-              <FormInput
-                labelText={'Email Address'}
-                placeholder={'jonh@gmail.com'}
-                placeholderTextColor={'#ccc'}
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                keyboardType='email-address'
-              />
+          <Formik
+            initialValues={{ email: '', password: '' }}
+            onSubmit={() => console.log('Information was sent')}
+          >
+            {({ handleChange, handleBlur, handleSubmit, values }) => (
+              <StyledFormArea showsVerticalScrollIndicator={false}>
+                <FormInput
+                  labelText={'Email Address'}
+                  placeholder={'jonh@gmail.com'}
+                  placeholderTextColor={'#ccc'}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  keyboardType='email-address'
+                />
 
-              <FormInput
-                labelText={'Password'}
-                placeholder={'password'}
-                placeholderTextColor={'#ccc'}
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-                secureTextEntry={true}
-              />
+                <FormInput
+                  labelText={'Password'}
+                  placeholder={'password'}
+                  placeholderTextColor={'#ccc'}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                  secureTextEntry={true}
+                />
 
-              <MsgBox>...</MsgBox>
+                <MsgBox>...</MsgBox>
 
-              <CustomizeButton buttonText={'Login'} onPress={handleSubmit} />
+                <CustomizeButton buttonText={'Login'} onPress={handleSubmit} />
 
-              <StyledLine />
+                <StyledLine />
 
-              <CustomizeButton
-                buttonText={'Sign in with Google'}
-                onPress={handleSubmit}
-                isGoogle={true}
-              >
-                <GoogleIcon name='logo-google' />
-              </CustomizeButton>
-
-              <ExtraView />
-            </StyledFormArea>
-          )}
-        </Formik>
-      </InnerContainer>
-    </StyledContainer>
+                <CustomizeButton
+                  buttonText={'Sign in with Google'}
+                  onPress={handleSubmit}
+                  isGoogle={true}
+                >
+                  <GoogleIcon name='logo-google' />
+                </CustomizeButton>
+              </StyledFormArea>
+            )}
+          </Formik>
+        </InnerContainer>
+      </StyledContainer>
+    </KeyboardAvoid>
   );
 };
 
