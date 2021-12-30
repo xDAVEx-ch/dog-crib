@@ -1,9 +1,5 @@
 import React from 'react';
 
-import Login from './screens/login/login.screen';
-import Signup from './screens/signup/signup.screen';
-import Welcome from './screens/welcome/welcome.screen';
-
 import { ThemeProvider } from 'styled-components/native';
 import { defaultTheme as theme } from './theme/default/index';
 import {
@@ -11,6 +7,8 @@ import {
   Roboto_300Light,
   Roboto_500Medium,
 } from '@expo-google-fonts/roboto';
+
+import RootStack from './navigation/root';
 
 export default function App() {
   const [bodyRobotoLoaded] = useRoboto({
@@ -28,7 +26,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Signup />
+        <RootStack />
       </ThemeProvider>
     </>
   );

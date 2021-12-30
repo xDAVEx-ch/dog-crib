@@ -68,7 +68,7 @@ const BtnContainer = styled(Pressable)`
   margin: 0 auto;
 `;
 
-const Welcome = () => {
+const Welcome = ({ navigation }) => {
   return (
     <>
       <StatusBar style='dark' />
@@ -93,7 +93,7 @@ const Welcome = () => {
               <BtnContainer>
                 <CustomizeButton
                   buttonText={'Logout'}
-                  onPress={() => {}}
+                  onPress={() => navigation.navigate('Login')}
                 ></CustomizeButton>
               </BtnContainer>
             </StyledFormArea>

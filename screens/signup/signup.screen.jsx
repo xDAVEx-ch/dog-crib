@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 import { Formik } from 'formik';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import FormInput from '../../components/formInput/formInput.component';
@@ -51,7 +51,7 @@ const StyledFormArea = styled(ScrollView)`
   margin-top: ${(props) => props.theme.sizes[2]};
 `;
 
-const Signup = () => {
+const Signup = ({ navigation }) => {
   const today = Date.now();
 
   const [show, setShow] = useState(false);
@@ -95,7 +95,10 @@ const Signup = () => {
             password: '',
             confirmPassword: '',
           }}
-          onSubmit={() => console.log('Information was sent')}
+          onSubmit={() => {
+            console.log('Information was sent');
+            navigation.navigate('Welcome');
+          }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <StyledFormArea showsVerticalScrollIndicator={false}>
@@ -151,13 +154,14 @@ const Signup = () => {
 
               <MsgBox>...</MsgBox>
 
-              <CustomizeButton buttonText={'Login'} onPress={handleSubmit} />
+              <CustomizeButton buttonText={'Signup'} onPress={handleSubmit} />
 
               <StyledLine />
 
               <ExtraView
                 textMsg={'Already have an account?'}
                 textContent={'Login'}
+                navigation={navigation}
               />
             </StyledFormArea>
           )}
