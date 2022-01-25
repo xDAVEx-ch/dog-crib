@@ -24,13 +24,21 @@ const TextLinkContent = styled(Text)`
   font-weight: ${(props) => props.theme.fontWeights.regular};
 `;
 
-const ExtraView = ({ textMsg, textContent }) => (
-  <StyledExtraView>
-    <StyledExtraText>{textMsg}</StyledExtraText>
-    <TextLink>
-      <TextLinkContent>{textContent}</TextLinkContent>
-    </TextLink>
-  </StyledExtraView>
-);
+const ExtraView = ({ textMsg, textContent, navigation }) => {
+  let pageName = 'Signup';
+
+  if (textContent === 'Login') {
+    pageName = 'Login';
+  }
+
+  return (
+    <StyledExtraView>
+      <StyledExtraText>{textMsg}</StyledExtraText>
+      <TextLink onPress={() => navigation.navigate(pageName)}>
+        <TextLinkContent>{textContent}</TextLinkContent>
+      </TextLink>
+    </StyledExtraView>
+  );
+};
 
 export default ExtraView;

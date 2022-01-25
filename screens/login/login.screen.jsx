@@ -11,6 +11,7 @@ import CustomizeButton from '../../components/customizeButton/customizeButton.co
 import MsgBox from '../../components/msgBox/msgBox.component';
 import StyledLine from '../../components/Line/Line.component';
 import KeyboardAvoid from '../../components/keyboardAvoidWrapper/keyboardAvoidWrapper';
+import ExtraView from '../../components/extraView/extraView.component';
 
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
@@ -69,7 +70,7 @@ const GoogleIcon = styled(Ionicons)`
   padding-top: 2px;
 `;
 
-const Login = () => {
+const Login = ({ navigation }) => {
   return (
     <KeyboardAvoid>
       <StyledContainer style={{ height: dimensions.screenHeight }}>
@@ -84,7 +85,10 @@ const Login = () => {
 
           <Formik
             initialValues={{ email: '', password: '' }}
-            onSubmit={() => console.log('Information was sent')}
+            onSubmit={() => {
+              console.log('Information was sent');
+              navigation.navigate('Welcome');
+            }}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
               <StyledFormArea showsVerticalScrollIndicator={false}>
@@ -121,6 +125,12 @@ const Login = () => {
                 >
                   <GoogleIcon name='logo-google' />
                 </CustomizeButton>
+
+                <ExtraView
+                  textMsg={'Need an account?'}
+                  textContent={'Signup'}
+                  navigation={navigation}
+                />
               </StyledFormArea>
             )}
           </Formik>
